@@ -1,19 +1,24 @@
 @extends('layouts.print')
 @section('title', 'Print Formulir Pendaftaran')
 @section('content')
-    <div class="flex justify-center p-2">
-        <div class="grid grid-rows-2 grid-flow-col gap-0 text-center border-b-2 border-slate-600">
-            <div class="row-span-2 place-self-center">
-                <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-24 h-24">
-            </div>
-            <div class="col-span-2">
-                <span class=" uppercase tracking-wide text-slate-600 font-bold">yayasan miftahul huda</span><br>
-                <span class="text-2xl uppercase tracking-[.2em] text-slate-600 font-bold">smp miftahul huda</span>
-            </div>
-            <div class="col-span-2 text-slate-600 text-xs ">
-                <span>Jl. Masjid No. 2 Peron - Limbangan , Kab. Kendal - Jawa Tengah</span><br>
-                <span>HP. 087880001111, 082280001111 , 085780001111 E-mail: smpmifda@gmail.com</span><br>
-                <span>Website : www.smpmiftahulhudaperon.com</span>
+    <div class="border-b-2 border-slate-600 pb-2">
+        <div class="relative flex items-center justify-center">
+            <img src="{{ asset('images/logo56.png') }}" alt="logo" class="absolute left-0 w-24 h-24">
+
+            <div class="text-center">
+                <div class="uppercase tracking-wide text-slate-600 font-bold">
+                    Yayasan Miftahul Huda
+                </div>
+
+                <div class="text-2xl uppercase tracking-[.2em] text-slate-600 font-bold">
+                    SMP Miftahul Huda
+                </div>
+
+                <div class="text-slate-600 text-xs mt-1">
+                    <div>Jl. Masjid No. 2 Peron - Limbangan, Kab. Kendal - Jawa Tengah</div>
+                    <div>HP. 087880001111, 082280001111, 085780001111 E-mail: smpmifda@gmail.com</div>
+                    <div>Website : www.smpmiftahulhudaperon.com</div>
+                </div>
             </div>
         </div>
     </div>
@@ -184,19 +189,24 @@
     </div>
 
     <div style="page-break-before: always"></div>
-    <div class="flex justify-center p-2">
-        <div class="grid grid-rows-2 grid-flow-col gap-0 text-center border-b-2 border-slate-600">
-            <div class="row-span-2 place-self-center">
-                <img src="{{ Storage::disk('s3')->url('smp/public/logoalfahp.png') }}" alt="logo" class="w-24 h-24">
-            </div>
-            <div class="col-span-2">
-                <span class=" uppercase tracking-wide text-slate-600 font-bold">yayasan miftahul huda</span><br>
-                <span class="text-2xl uppercase tracking-[.2em] text-slate-600 font-bold">smp miftahul huda</span>
-            </div>
-            <div class="col-span-2 text-slate-600 text-xs ">
-                <span>Jl. Kampir-Sudipayung, Kec. Ngampel, Kab. Kendal - Jawa Tengah</span><br>
-                <span>HP. 087880001111, 082280001111 , 085780001111 E-mail: smpmifda@gmail.com</span><br>
-                <span>Website : www.smpmifda.sch.id</span>
+    <div class="border-b-2 border-slate-600 pb-2">
+        <div class="relative flex items-center justify-center">
+            <img src="{{ asset('images/logo56.png') }}" alt="logo" class="absolute left-0 w-24 h-24">
+
+            <div class="text-center">
+                <div class="uppercase tracking-wide text-slate-600 font-bold">
+                    Yayasan Miftahul Huda
+                </div>
+
+                <div class="text-2xl uppercase tracking-[.2em] text-slate-600 font-bold">
+                    SMP Miftahul Huda
+                </div>
+
+                <div class="text-slate-600 text-xs mt-1">
+                    <div>Jl. Masjid No. 2 Peron - Limbangan, Kab. Kendal - Jawa Tengah</div>
+                    <div>HP. 087880001111, 082280001111, 085780001111 E-mail: smpmifda@gmail.com</div>
+                    <div>Website : www.smpmiftahulhudaperon.com</div>
+                </div>
             </div>
         </div>
     </div>
