@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\GetPendaftarController;
 use App\Http\Controllers\Auth\GetSiswaDiterimaController;
 use App\Http\Controllers\Pendaftaran\PrintFormulirController;
+use App\Livewire\Agama\InputAgama;
 use App\Livewire\Auth\Dashboard;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Landing;
@@ -42,4 +43,9 @@ Route::middleware(['auth', 'role:Admin|Pendaftaran'])->group(function () {
 
 
     Route::get('print-formulir-pendaftaran/{id}', PrintFormulirController::class)->name('print.formulir-pendaftaran');
+});
+
+// Seleksi Agama
+Route::middleware(['auth', 'role:Admin|Agama'])->group(function () {
+    Route::get('input-agama', InputAgama::class)->name('agama.input-agama')->lazy();
 });

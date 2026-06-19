@@ -1,5 +1,5 @@
 <div x-data="{
-    openPendaftaran: {{ request()->routeIs('pendaftaran*') ? 'true' : 'false' }}
+    openPendaftaran: {{ request()->routeIs('pendaftaran.*') ? 'true' : 'false' }}
 }" class="mb-2">
     <!-- Header collapsible -->
     <div class="border-b-2 mb-2 py-2 cursor-pointer flex items-center justify-between"
