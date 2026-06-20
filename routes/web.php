@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\GetPendaftarController;
 use App\Http\Controllers\Auth\GetSiswaDiterimaController;
 use App\Http\Controllers\Pendaftaran\PrintFormulirController;
+use App\Livewire\Agama\HasilAgama;
 use App\Livewire\Agama\InputAgama;
 use App\Livewire\Auth\Dashboard;
 use App\Livewire\Auth\Logout;
@@ -48,4 +49,5 @@ Route::middleware(['auth', 'role:Admin|Pendaftaran'])->group(function () {
 // Seleksi Agama
 Route::middleware(['auth', 'role:Admin|Agama'])->group(function () {
     Route::get('input-agama', InputAgama::class)->name('agama.input-agama')->lazy();
+    Route::get('hasil-agama', HasilAgama::class)->name('agama.hasil-agama')->lazy();
 });

@@ -13,6 +13,7 @@
 
     <!-- Content collapsible -->
     <div x-show="openAgama" x-collapse>
-        <x-sidebar.link route="agama.input-agama" label="Input agama" wire:navigate />
+        <x-sidebar.link route="agama.input-agama" label="input agama" wire:navigate />
+        <x-sidebar.link route="agama.hasil-agama" label="hasil agama" wire:navigate />
     </div>
 </div>
