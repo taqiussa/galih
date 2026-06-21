@@ -184,7 +184,7 @@ class InputPendaftaran extends Component
                     'gelombang' => $this->gelombang,
                     'username' => $this->kode_daftar,
                     'kode_daftar' => $this->kode_daftar,
-                    'password' => bcrypt('123456789'),
+                    'password' => bcrypt('12345678'),
                     'tanggal_daftar' => date('Y-m-d'),
                     'is_online' => 0,
                     'tingkat' => $this->tingkat,

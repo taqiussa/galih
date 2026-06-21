@@ -76,6 +76,7 @@ class UkurSeragam extends Component
             ]
         );
 
+        $this->user->update(['terukur' => true]);
 
         $this->notification()->send([
             'icon' => 'success',

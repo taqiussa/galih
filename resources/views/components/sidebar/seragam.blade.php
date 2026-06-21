@@ -14,7 +14,7 @@
 
     <!-- Content collapsible -->
     <div x-show="openSeragam" x-collapse>
-        <x-sidebar.link route="seragam.input-seragam" label="input seragam" wire:navigate />
+        <x-sidebar.link route="seragam.ukur-seragam" label="ukur seragam" wire:navigate />
         <x-sidebar.link route="seragam.hasil-seragam" label="hasil ukur seragam" wire:navigate />
     </div>
 </div>

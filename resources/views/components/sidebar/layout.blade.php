@@ -23,12 +23,16 @@
 
     <nav class="p-4 space-y-2">
 
-        @role('Admin')
+        {{-- @role('Admin')
             <x-sidebar.admin />
-        @endrole
+        @endrole --}}
 
         @role('Admin')
             <x-sidebar.pendaftaran />
+        @endrole
+
+        @role('Admin')
+            <x-sidebar.akademik />
         @endrole
 
         @role('Admin')
@@ -41,6 +45,10 @@
 
         @role('Admin')
             <x-sidebar.seragam />
+        @endrole
+
+        @role('Admin')
+            <x-sidebar.print />
         @endrole
 
         <a href="{{ $isSiswa ? route('siswa.logout') : route('logout') }}"
