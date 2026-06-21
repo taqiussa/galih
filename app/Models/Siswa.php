@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,13 +21,18 @@ class Siswa extends Authenticatable
         return $this->hasOne(Biodata::class, 'kode_daftar', 'kode_daftar')->withDefault();
     }
 
-    /**
-     * Get all of the agama for the Siswa
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function seleksiAgama(): HasMany
     {
         return $this->hasMany(SeleksiAgama::class, 'kode_daftar', 'kode_daftar');
+    }
+
+    public function seleksiWawancara(): BelongsTo
+    {
+        return $this->belongsTo(SeleksiWawancara::class, 'kode_daftar', 'kode_daftar');
+    }
+
+    public function seragam(): BelongsTo
+    {
+        return $this->belongsTo(Seragam::class, 'kode_daftar', 'kode_daftar');
     }
 }

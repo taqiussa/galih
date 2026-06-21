@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Agama;
 
+use App\Models\SeleksiAgama;
 use App\Models\Siswa;
-use App\Traits\GetData;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -13,8 +13,6 @@ use WireUi\Traits\WireUiActions;
 class InputAgama extends Component
 {
     use WireUiActions;
-    use GetData;
-
 
     public $kode_daftar;
 
@@ -75,8 +73,9 @@ class InputAgama extends Component
 
             if ($this->pilihan == 'hafalan') {
 
-                $this->user->seleksiAgama()->updateOrCreate(
+                SeleksiAgama::updateOrCreate(
                     [
+                        'kode_daftar' => $this->kode_daftar,
                         'jenis' => 'hafalan',
                     ],
                     [
@@ -86,8 +85,9 @@ class InputAgama extends Component
                 );
             } else {
 
-                $this->user->seleksiAgama()->updateOrCreate(
+                SeleksiAgama::updateOrCreate(
                     [
+                        'kode_daftar' => $this->kode_daftar,
                         'jenis' => 'alquran',
                     ],
                     [

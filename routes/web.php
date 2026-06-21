@@ -12,9 +12,13 @@ use App\Livewire\Login;
 use App\Livewire\Pendaftaran\DataPendaftar;
 use App\Livewire\Pendaftaran\EditPendaftar;
 use App\Livewire\Pendaftaran\InputPendaftaran;
+use App\Livewire\Seragam\HasilUkurSeragam;
+use App\Livewire\Seragam\UkurSeragam;
 use App\Livewire\Siswa\Dashboard as SiswaDashboard;
 use App\Livewire\Siswa\Exam;
 use App\Livewire\Siswa\LogoutSiswa;
+use App\Livewire\Wawancara\HasilWawancara;
+use App\Livewire\Wawancara\InputWawancara;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,4 +54,16 @@ Route::middleware(['auth', 'role:Admin|Pendaftaran'])->group(function () {
 Route::middleware(['auth', 'role:Admin|Agama'])->group(function () {
     Route::get('input-agama', InputAgama::class)->name('agama.input-agama')->lazy();
     Route::get('hasil-agama', HasilAgama::class)->name('agama.hasil-agama')->lazy();
+});
+
+// Seleksi Wawancara
+Route::middleware(['auth', 'role:Admin|Wawancara'])->group(function () {
+    Route::get('input-wawancara', InputWawancara::class)->name('wawancara.input-wawancara')->lazy();
+    Route::get('hasil-wawancara', HasilWawancara::class)->name('wawancara.hasil-wawancara')->lazy();
+});
+
+// Ukur Seragam
+Route::middleware(['auth', 'role:Admin|Seragam'])->group(function () {
+    Route::get('input-seragam', UkurSeragam::class)->name('seragam.input-seragam')->lazy();
+    Route::get('hasil-seragam', HasilUkurSeragam::class)->name('seragam.hasil-seragam')->lazy();
 });

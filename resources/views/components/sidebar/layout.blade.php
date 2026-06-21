@@ -35,6 +35,14 @@
             <x-sidebar.agama />
         @endrole
 
+        @role('Admin')
+            <x-sidebar.wawancara />
+        @endrole
+
+        @role('Admin')
+            <x-sidebar.seragam />
+        @endrole
+
         <a href="{{ $isSiswa ? route('siswa.logout') : route('logout') }}"
             class="block px-4 py-2 rounded-lg hover:bg-gray-100 font-medium">Log out</a>
     </nav>
