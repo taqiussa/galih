@@ -16,6 +16,7 @@ class PrintPengumumanController extends Controller
         $user = Siswa::query()
             ->whereKodeDaftar($request->kode_daftar)
             ->with([
+                'akademik',
                 'biodata',
                 'seleksiAgama',
                 'seleksiWawancara'

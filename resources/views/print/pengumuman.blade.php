@@ -25,17 +25,17 @@
     <h1 class="mb-2 font-bold text-center uppercase text-slate-700 text-md">
         pengumuman
         <br>
-        no : psb/smp-mifda/{{ str_replace(' ', '', $user->biodata->tahun) }}
+        no : psb/smp-mifda/{{ str_replace(' ', '', $user->biodata?->tahun) }}
     </h1>
     <h1 class="text-sm text-center uppercase text-slate-600">tentang</h1>
     <h1 class="mb-10 text-sm font-bold text-center uppercase text-slate-700">
         penerimaan santri baru
         <br>
         SMP MIFTAHUL HUDA
-        tahun {{ $user->biodata->tahun }}
+        tahun {{ $user->biodata?->tahun }}
     </h1>
     <div class="px-10 text-sm text-slate-600">
-        Berdasarkan hasil tes seleksi penerimaan peserta didik baru tahun ajaran {{ $user->biodata->tahun }} SMP
+        Berdasarkan hasil tes seleksi penerimaan peserta didik baru tahun ajaran {{ $user->biodata?->tahun }} SMP
         Miftahul Huda, yang
         meliputi :
     </div>
@@ -50,10 +50,16 @@
                 </tr>
                 <tr>
                     @php
-                        $nilaiAkademik = $user->penilaians->where('jenis', 'akademik')->first()?->nilai;
-                        $nilaiAlquran = $user->penilaians->where('jenis', 'alquran')->first()?->nilai;
-                        $nilaiHafalan = $user->penilaians->where('jenis', 'hafalan')->first()?->nilai;
-                        $rataRata = floor($user->penilaians->avg('nilai'));
+                        $nilaiAkademik = $user->akademik?->nilai;
+                        $nilaiAlquran = $user->seleksiAgama->where('jenis', 'alquran')->first()?->nilai;
+                        $nilaiHafalan = $user->seleksiAgama->where('jenis', 'hafalan')->first()?->nilai;
+
+                        $jumlahNilai = ($nilaiAkademik ?? 0) + ($nilaiAlquran ?? 0) + ($nilaiHafalan ?? 0);
+
+                        $semuaTesSelesai =
+                            !is_null($nilaiAkademik) && !is_null($nilaiAlquran) && !is_null($nilaiHafalan);
+
+                        $rataRata = $semuaTesSelesai ? floor($jumlahNilai / 3) : null;
                     @endphp
                     <td class="border border-slate-600 py-1 px-2 w-[5%] text-center" rowspan="5">1.</td>
                     <td class="px-2 py-1 pl-5 border border-slate-600 font-bold">hasil tes akademik, meliputi :</td>
@@ -61,15 +67,14 @@
                         {{ $nilaiAkademik }}
                     </td>
                     <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="5">
-                        @if ($nilaiAkademik && $nilaiAkademik >= 85)
+                        @if (!is_null($nilaiAkademik) && $nilaiAkademik >= 85)
                             Sangat Baik
-                        @elseif ($nilaiAkademik && $nilaiAkademik >= 75)
+                        @elseif (!is_null($nilaiAkademik) && $nilaiAkademik >= 75)
                             Baik
-                        @elseif($nilaiAkademik && $nilaiAkademik >= 65)
+                        @elseif(!is_null($nilaiAkademik) && $nilaiAkademik >= 65)
                             Cukup
-                        @elseif($nilaiAkademik && $nilaiAkademik < 65)
-                            Kurang
                         @else
+                            Kurang
                         @endif
                     </td>
                 </tr>
@@ -93,15 +98,14 @@
                         {{ $nilaiAlquran }}
                     </td>
                     <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="4">
-                        @if ($nilaiAlquran && $nilaiAlquran >= 85)
+                        @if (!is_null($nilaiAlquran) && $nilaiAlquran >= 85)
                             Sangat Baik
-                        @elseif ($nilaiAlquran && $nilaiAlquran >= 75)
+                        @elseif (!is_null($nilaiAlquran) && $nilaiAlquran >= 75)
                             Baik
-                        @elseif($nilaiAlquran && $nilaiAlquran >= 65)
+                        @elseif(!is_null($nilaiAlquran) && $nilaiAlquran >= 65)
                             Cukup
-                        @elseif($nilaiAlquran && $nilaiAlquran < 65)
-                            Kurang
                         @else
+                            Kurang
                         @endif
                     </td>
                 </tr>
@@ -123,15 +127,14 @@
                         {{ $nilaiHafalan }}
                     </td>
                     <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="4">
-                        @if ($nilaiHafalan && $nilaiHafalan >= 85)
+                        @if (!is_null($nilaiHafalan) && $nilaiHafalan >= 85)
                             Sangat Baik
-                        @elseif ($nilaiHafalan && $nilaiHafalan >= 75)
+                        @elseif (!is_null($nilaiHafalan) && $nilaiHafalan >= 75)
                             Baik
                         @elseif($nilaiHafalan && $nilaiHafalan >= 65)
                             Cukup
-                        @elseif($nilaiHafalan && $nilaiHafalan < 65)
-                            Kurang
                         @else
+                            Kurang
                         @endif
                     </td>
                 </tr>
@@ -154,20 +157,19 @@
                 <tr>
                     <td class="px-2 py-1 pl-5 border border-slate-600 font-bold" colspan="2">rata - rata nilai</td>
                     <td class="px-2 py-1 pl-5 border border-slate-600 font-bold text-center text-lg">
-                        @if ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan)
+                        @if ($semuaTesSelesai)
                             {{ $rataRata }}
                         @endif
                     </td>
                     <td class="px-2 py-1 pl-5 border border-slate-600 font-bold text-center text-lg">
-                        @if ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan && $rataRata >= 85)
+                        @if ($semuaTesSelesai && $rataRata >= 85)
                             Sangat Baik
-                        @elseif ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan && $rataRata >= 75)
+                        @elseif ($semuaTesSelesai && $rataRata >= 75)
                             Baik
-                        @elseif ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan && $rataRata >= 65)
+                        @elseif ($semuaTesSelesai && $rataRata >= 65)
                             Cukup
-                        @elseif ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan && $rataRata < 65)
+                        @elseif ($semuaTesSelesai)
                             Kurang
-                        @else
                         @endif
                     </td>
                 </tr>
@@ -186,8 +188,8 @@
                 </tr>
                 <tr>
                     <td class="capitalize w-[30%] pl-5">tempat, tanggal lahir</td>
-                    <td class="font-bold uppercase">: {{ $user->biodata->tempat_lahir }},
-                        {{ tanggal($user->biodata->tanggal_lahir) }}</td>
+                    <td class="font-bold uppercase">: {{ $user->biodata?->tempat_lahir }},
+                        {{ tanggal($user->biodata?->tanggal_lahir) }}</td>
                 </tr>
                 <tr>
                     <td class="capitalize w-[30%] pl-5">no. pendaftaran</td>
@@ -195,7 +197,7 @@
                 </tr>
                 <tr>
                     <td class="w-2/5 pl-5 capitalize">asal sekolah</td>
-                    <td class="font-bold uppercase">: {{ $user->sekolahSd->nama }}</td>
+                    <td class="font-bold uppercase">: {{ $user->biodata?->nama_sekolah_dasar }}</td>
                 </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>
@@ -205,9 +207,9 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="text-xl font-bold text-center uppercase">
-                        @if ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan && $rataRata >= 65)
+                        @if ($semuaTesSelesai && $rataRata >= 65)
                             Diterima
-                        @elseif ($nilaiAkademik && $nilaiAlquran && $nilaiHafalan && $rataRata < 65)
+                        @elseif ($semuaTesSelesai)
                             wajib mengikuti tes formatif / lanjutan
                         @else
                             belum selesai mengikuti tes
@@ -231,7 +233,7 @@
         <div class="flex justify-end mt-5 mr-10">
             <div class="flex flex-col items-center space-y-1">
                 <span class="text-center">
-                    Limbangan, {{ tanggal($tanggal) }}
+                    Limbangan, {{ tanggal(date('Y-m-d')) }}
                     <br>
                     Kepala Sekolah
                 </span>
