@@ -16,6 +16,16 @@ class Siswa extends Authenticatable
     protected $table = 'siswa';
     protected $hidden = ['password'];
 
+    public function akademik(): BelongsTo
+    {
+        return $this->belongsTo(Akademik::class, 'kode_daftar', 'kode_daftar');
+    }
+
+    public function jawaban(): HasMany
+    {
+        return $this->hasMany(Jawaban::class, 'kode_daftar', 'kode_daftar');
+    }
+
     public function biodata(): HasOne
     {
         return $this->hasOne(Biodata::class, 'kode_daftar', 'kode_daftar')->withDefault();
