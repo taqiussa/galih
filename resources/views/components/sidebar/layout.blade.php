@@ -48,7 +48,7 @@
         @endrole
 
         @role('Admin')
-            <x-sidebar.print />
+            <x-sidebar.pengumuman />
         @endrole
 
         <a href="{{ $isSiswa ? route('siswa.logout') : route('logout') }}"

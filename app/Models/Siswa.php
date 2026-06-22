@@ -21,6 +21,17 @@ class Siswa extends Authenticatable
         return $this->belongsTo(Akademik::class, 'kode_daftar', 'kode_daftar');
     }
 
+
+    /**
+     * Get the berkas associated with the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function berkas(): HasOne
+    {
+        return $this->hasOne(Berkas::class, 'kode_daftar', 'kode_daftar')->withDefault();
+    }
+
     public function jawaban(): HasMany
     {
         return $this->hasMany(Jawaban::class, 'kode_daftar', 'kode_daftar');

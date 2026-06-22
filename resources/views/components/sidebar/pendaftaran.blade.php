@@ -16,5 +16,7 @@
     <div x-show="openPendaftaran" x-collapse>
         <x-sidebar.link route="pendaftaran.input-pendaftaran" label="Input Pendaftaran" wire:navigate />
         <x-sidebar.link route="pendaftaran.data-pendaftar" label="data Pendaftar" wire:navigate />
+        <x-sidebar.link route="pendaftaran.input-berkas" label="Input berkas" wire:navigate />
+        <x-sidebar.link route="pendaftaran.rekap-berkas" label="rekap berkas" wire:navigate />
     </div>
 </div>

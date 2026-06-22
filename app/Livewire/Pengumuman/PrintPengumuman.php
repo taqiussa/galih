@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Print;
+namespace App\Livewire\Pengumuman;
 
 use App\Models\Siswa;
 use Livewire\Attributes\Title;
@@ -21,7 +21,7 @@ class PrintPengumuman extends Component
 
     public function render()
     {
-        return view('livewire.print.print-pengumuman');
+        return view('livewire.pengumuman.print-pengumuman');
     }
 
     public function updatedKodeDaftar()

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\GetPendaftarController;
 use App\Http\Controllers\Auth\GetSiswaDiterimaController;
 use App\Http\Controllers\Pendaftaran\PrintFormulirController;
 use App\Http\Controllers\Print\PrintPengumumanController;
+use App\Livewire\Pendaftaran\InputBerkas;
 use App\Livewire\Agama\HasilAgama;
 use App\Livewire\Agama\InputAgama;
 use App\Livewire\Akademik\AturTes;
@@ -15,7 +16,9 @@ use App\Livewire\Login;
 use App\Livewire\Pendaftaran\DataPendaftar;
 use App\Livewire\Pendaftaran\EditPendaftar;
 use App\Livewire\Pendaftaran\InputPendaftaran;
-use App\Livewire\Print\PrintPengumuman;
+use App\Livewire\Pendaftaran\RekapBerkas;
+use App\Livewire\Pengumuman\HasilPengumuman;
+use App\Livewire\Pengumuman\PrintPengumuman;
 use App\Livewire\Seragam\HasilUkurSeragam;
 use App\Livewire\Seragam\UkurSeragam;
 use App\Livewire\Siswa\Dashboard as SiswaDashboard;
@@ -49,6 +52,8 @@ Route::middleware(['auth', 'role:Admin|Pendaftaran'])->group(function () {
     Route::get('data-pendaftar', DataPendaftar::class)->name('pendaftaran.data-pendaftar')->lazy();
     Route::get('edit-pendaftar/{id}', EditPendaftar::class)->name('pendaftaran.edit-pendaftar')->lazy();
     Route::get('input-pendaftaran', InputPendaftaran::class)->name('pendaftaran.input-pendaftaran')->lazy();
+    Route::get('input-berkas', InputBerkas::class)->name('pendaftaran.input-berkas')->lazy();
+    Route::get('rekap-berkas', RekapBerkas::class)->name('pendaftaran.rekap-berkas')->lazy();
 
 
     Route::get('print-formulir-pendaftaran/{id}', PrintFormulirController::class)->name('print.formulir-pendaftaran');
@@ -78,9 +83,10 @@ Route::middleware(['auth', 'role:Admin|Seragam'])->group(function () {
     Route::get('hasil-seragam', HasilUkurSeragam::class)->name('seragam.hasil-seragam')->lazy();
 });
 
-// Ukur Seragam
-Route::middleware(['auth', 'role:Admin'])->group(function () {
-    Route::get('print-pengumuman', PrintPengumuman::class)->name('print.print-pengumuman')->lazy();
+// Ukur Pengumuman
+Route::middleware(['auth', 'role:Admin|Pengumuman'])->group(function () {
+    Route::get('print-pengumuman', PrintPengumuman::class)->name('pengumuman.print-pengumuman')->lazy();
+    Route::get('hasil-pengumuman', HasilPengumuman::class)->name('pengumuman.hasil-pengumuman')->lazy();
 
-    Route::get('print-pengumuman/print', PrintPengumumanController::class)->name('print.print-pengumuman.print');
+    Route::get('print-pengumuman/print', PrintPengumumanController::class)->name('pengumuman.print-pengumuman.print');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pendaftaran;
 
+use App\Exports\ExportDataPendaftar;
 use Carbon\Carbon;
 use App\Traits\GetData;
 use Livewire\Component;
@@ -13,6 +14,7 @@ use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 #[Title('Data Pendaftar')]
 class DataPendaftar extends Component
@@ -33,6 +35,11 @@ class DataPendaftar extends Component
     public function render()
     {
         return view('livewire.pendaftaran.data-pendaftar');
+    }
+
+    public function download_data()
+    {
+        return Excel::download(new ExportDataPendaftar(), 'Data Pendaftar.xlsx');
     }
 
     public function confirm($id): void

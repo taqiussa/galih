@@ -12,7 +12,7 @@
                 disabled />
         </div>
         <div class="py-3">
-            <x-button href="{!! route('print.print-pengumuman.print', ['kode_daftar' => $kode_daftar]) !!}" target="blank__" label="print" icon="printer" positive />
+            <x-button href="{!! route('pengumuman.print-pengumuman.print', ['kode_daftar' => $kode_daftar]) !!}" target="blank__" label="print" icon="printer" positive />
         </div>
     </x-card>
 </div>
