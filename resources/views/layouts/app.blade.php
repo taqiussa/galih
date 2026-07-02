@@ -31,15 +31,17 @@
     <x-sidebar.layout />
 
     <!-- Top Navbar -->
-    <header class="h-16 bg-white shadow flex items-center px-4 lg:ml-64 sticky top-0 z-20">
-        <button class="lg:hidden mr-4" @click="sidebarOpen = true">
+    <header class="sticky top-0 z-20 flex h-16 items-center bg-white px-4 shadow lg:ml-64">
+        <button class="mr-4 lg:hidden" @click="sidebarOpen = true">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
 
-        <h1 class="text-xl font-semibold"></h1>
+        <div class="ml-auto">
+            <img src="{{ asset('images/logo56.png') }}" alt="Logo" class="h-10 w-auto">
+        </div>
     </header>
 
     <!-- Page Content -->

@@ -1,5 +1,5 @@
 <x-card>
-    <h2 class="my-3 text-xl font-bold text-slate-600">Hasil Seleksi Agama</h2>
+    <h2 class="my-3 text-xl font-bold text-slate-600">Hasil Seleksi Wawancara</h2>
     <section class="px-7 bg-white border-b">
         <div class="my-3">
             <x-input wire:model.live.debounce.500ms="search" icon="magnifying-glass" placeholder="Cari ..."

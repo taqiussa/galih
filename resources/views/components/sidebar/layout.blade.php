@@ -43,12 +43,13 @@
             <x-sidebar.wawancara />
         @endrole
 
-        @role('Admin')
-            <x-sidebar.seragam />
-        @endrole
 
         @role('Admin')
             <x-sidebar.pengumuman />
+        @endrole
+
+        @role('Admin')
+            <x-sidebar.seragam />
         @endrole
 
         <a href="{{ $isSiswa ? route('siswa.logout') : route('logout') }}"
