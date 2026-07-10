@@ -1,4 +1,5 @@
 <div class="min-h-screen bg-gray-50 py-8">
+
     <div class="max-w-7xl mx-auto px-4">
 
         @switch($status)
@@ -27,6 +28,12 @@
 
             {{-- AKADEMIK --}}
             @case('akademik')
+                <div class=" bg-white border-2 rounded-lg shadow-lg p-7 mbx mb-3">
+                    <p class="text-justify text-slate-600">
+                        Seleksi Akademik SMP Miftahul Huda Peron Tahun Ajaran 2026 / 2027
+                    </p>
+                </div>
+
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     <div class="lg:col-span-3 order-2 lg:order-1">
                         <x-card class="p-6">
@@ -34,7 +41,7 @@
                                 <h2 class="text-xl font-bold">Soal {{ $priority }} / {{ $totalQuestions }}</h2>
                             </div>
 
-                            <p class="text-lg leading-relaxed mb-8">{!! nl2br(e($currentQuestion?->pertanyaan)) !!}</p>
+                            <p class="text-lg leading-relaxed mb-8">{!! nl2br(e($currentQuestion?->soal)) !!}</p>
 
                             <div class="space-y-4">
                                 @foreach (json_decode($currentQuestion?->pilihan ?? '[]', true) as $index => $option)
