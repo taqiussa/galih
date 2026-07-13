@@ -4,17 +4,18 @@ use App\Http\Controllers\Auth\GetPendaftarController;
 use App\Http\Controllers\Auth\GetSiswaDiterimaController;
 use App\Http\Controllers\Pendaftaran\PrintFormulirController;
 use App\Http\Controllers\Print\PrintPengumumanController;
-use App\Livewire\Pendaftaran\InputBerkas;
 use App\Livewire\Agama\HasilAgama;
 use App\Livewire\Agama\InputAgama;
 use App\Livewire\Akademik\AturTes;
 use App\Livewire\Akademik\HasilAkademik;
 use App\Livewire\Auth\Dashboard;
 use App\Livewire\Auth\Logout;
+use App\Livewire\Daftar;
 use App\Livewire\Landing;
 use App\Livewire\Login;
 use App\Livewire\Pendaftaran\DataPendaftar;
 use App\Livewire\Pendaftaran\EditPendaftar;
+use App\Livewire\Pendaftaran\InputBerkas;
 use App\Livewire\Pendaftaran\InputPendaftaran;
 use App\Livewire\Pendaftaran\RekapBerkas;
 use App\Livewire\Pengumuman\HasilPengumuman;
@@ -44,6 +45,7 @@ Route::middleware(['auth:siswa'])->group(function () {
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', Landing::class)->name('/');
+    Route::get('daftar', Daftar::class)->name('daftar');
     Route::get('login', Login::class)->name('login');
 });
 

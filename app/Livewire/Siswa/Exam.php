@@ -8,7 +8,6 @@ use App\Models\Jawaban;
 use App\Models\Pertanyaan;
 use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\Computed;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
@@ -103,7 +102,7 @@ class Exam extends Component
             ['kode_daftar' => Auth::user()->kode_daftar, 'nomor' => $this->priority],
             [
                 'jawaban'     => $index,
-                'nilai_benar' => $index === $this->currentQuestion?->correct ? 1 : 0,
+                'nilai_benar' => $index == $this->currentQuestion?->kunci ? 1 : 0,
             ]
         );
 

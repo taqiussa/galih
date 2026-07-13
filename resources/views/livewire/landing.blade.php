@@ -12,7 +12,7 @@
             <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-5 text-lg md:items-center">
                 <a href="#" class="hover:text-indigo-300 transition">Beranda</a>
-                {{-- <a href="{{ route('daftar') }}" wire:navigate class="hover:text-indigo-300 transition">Pendaftaran</a> --}}
+                <a href="{{ route('daftar') }}" wire:navigate class="hover:text-indigo-300 transition">Pendaftaran</a>
                 <a href="{{ route('login') }}" wire:navigate
                     class=" bg-white  text-blue-700 hover:text-indigo-300 font-bold px-2 py-1 rounded-md shadow-lg transform hover:scale-105 transition">
                     Masuk
@@ -38,8 +38,8 @@
             <nav class="px-6 py-5 space-y-4 text-lg">
                 <a href="#" class="block text-white hover:text-indigo-300 transition"
                     @click="mobileMenu = !mobileMenu">Beranda</a>
-                {{-- <a href="{{ route('daftar') }}" wire:navigate
-                    class="block text-white hover:text-indigo-300 transition">Pendaftaran</a> --}}
+                <a href="{{ route('daftar') }}" wire:navigate
+                    class="block text-white hover:text-indigo-300 transition">Pendaftaran</a>
                 <a href="{{ route('login') }}" class="block text-white hover:text-indigo-300 transition">Masuk</a>
             </nav>
         </div>
