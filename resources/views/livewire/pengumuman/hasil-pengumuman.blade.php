@@ -1,9 +1,16 @@
 <x-card>
     <h2 class="my-3 text-xl font-bold text-slate-600">Hasil Pengumuman</h2>
     <section class="px-7 bg-white border-b">
-        <div class="my-3">
-            <x-input wire:model.live.debounce.500ms="search" icon="magnifying-glass" placeholder="Cari ..."
-                class="w-auto text-slate-600" />
+        <div class="my-3 md:grid md:grid-cols-4 md:gap-5 space-y-3 md:space-y-0">
+            <div class="col-span-3">
+                <x-input wire:model.live.debounce.500ms="search" icon="magnifying-glass" placeholder="Cari ..."
+                    class="w-auto text-slate-600" />
+            </div>
+            <x-native-select wire:model.live='terima'>
+                <option value="">Belum diumumkan</option>
+                <option value="0">Tidak Diterima</option>
+                <option value="1">Diterima</option>
+            </x-native-select>
         </div>
         <div class="py-3">
             <x-button label="Download" wire:click.prevent='download_data' icon="arrow-down-tray"

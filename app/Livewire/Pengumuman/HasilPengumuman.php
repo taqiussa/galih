@@ -16,6 +16,7 @@ class HasilPengumuman extends Component
     use WithPagination;
 
     public $search;
+    public $terima = NULL;
 
     public function mount() {}
 
@@ -40,6 +41,10 @@ class HasilPengumuman extends Component
                 'seleksiWawancara'
             ])
             ->when($this->search, fn($q) => $q->where('name', 'like', '%' . $this->search . '%'))
+            ->when(
+                $this->terima != NUll,
+                fn($q) => $q->whereDiterima($this->terima)
+            )
             ->orderBy('kode_daftar')
             ->paginate(10);
     }
