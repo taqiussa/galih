@@ -14,6 +14,7 @@
 
     <!-- Content collapsible -->
     <div x-show="openPengumuman" x-collapse>
+        <x-sidebar.link route="pengumuman.input-pengumuman" label="input pengumuman" wire:navigate />
         <x-sidebar.link route="pengumuman.hasil-pengumuman" label="hasil pengumuman" wire:navigate />
         <x-sidebar.link route="pengumuman.print-pengumuman" label="print pengumuman" wire:navigate />
     </div>

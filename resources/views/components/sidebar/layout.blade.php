@@ -21,6 +21,10 @@
         <x-sidebar.link x-show="{{ $isSiswa ? 'true' : 'false' }}" route="exam" label="Tes Akademik" wire:navigate />
     @endif
 
+    @if ($isSiswa)
+        <x-sidebar.link label="hasil pengumuman" route="siswa.hasil-pengumuman-siswa" wire:navigate />
+    @endif
+
     <nav class="p-4 space-y-2">
 
         {{-- @role('Admin')

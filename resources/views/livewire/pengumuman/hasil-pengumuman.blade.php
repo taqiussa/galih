@@ -7,7 +7,7 @@
                     class="w-auto text-slate-600" />
             </div>
             <x-native-select wire:model.live='terima'>
-                <option value="">Belum diumumkan</option>
+                <option value="">Pilih</option>
                 <option value="0">Tidak Diterima</option>
                 <option value="1">Diterima</option>
             </x-native-select>

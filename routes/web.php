@@ -19,11 +19,13 @@ use App\Livewire\Pendaftaran\InputBerkas;
 use App\Livewire\Pendaftaran\InputPendaftaran;
 use App\Livewire\Pendaftaran\RekapBerkas;
 use App\Livewire\Pengumuman\HasilPengumuman;
+use App\Livewire\Pengumuman\InputPengumuman;
 use App\Livewire\Pengumuman\PrintPengumuman;
 use App\Livewire\Seragam\HasilUkurSeragam;
 use App\Livewire\Seragam\UkurSeragam;
 use App\Livewire\Siswa\Dashboard as SiswaDashboard;
 use App\Livewire\Siswa\Exam;
+use App\Livewire\Siswa\HasilPengumumanSiswa;
 use App\Livewire\Siswa\LogoutSiswa;
 use App\Livewire\Wawancara\HasilWawancara;
 use App\Livewire\Wawancara\InputWawancara;
@@ -39,6 +41,7 @@ Route::middleware(['auth:web'])->group(function () {
 
 Route::middleware(['auth:siswa'])->group(function () {
     Route::get('exam', Exam::class)->name('exam')->lazy();
+    Route::get('hasil-pengumuman-siswa', HasilPengumumanSiswa::class)->name('siswa.hasil-pengumuman-siswa')->lazy();
     Route::get('siswa/dashboard', SiswaDashboard::class)->name('siswa.dashboard')->lazy();
     Route::get('siswa/logout', LogoutSiswa::class)->name('siswa.logout')->lazy();
 });
@@ -87,6 +90,7 @@ Route::middleware(['auth', 'role:Admin|Seragam'])->group(function () {
 
 // Ukur Pengumuman
 Route::middleware(['auth', 'role:Admin|Pengumuman'])->group(function () {
+    Route::get('input-pengumuman', InputPengumuman::class)->name('pengumuman.input-pengumuman')->lazy();
     Route::get('print-pengumuman', PrintPengumuman::class)->name('pengumuman.print-pengumuman')->lazy();
     Route::get('hasil-pengumuman', HasilPengumuman::class)->name('pengumuman.hasil-pengumuman')->lazy();
 
