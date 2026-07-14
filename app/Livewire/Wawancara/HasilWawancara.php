@@ -26,7 +26,7 @@ class HasilWawancara extends Component
     public function listSiswa()
     {
         return Siswa::query()
-            ->withWhereHas('seleksiWawancara')
+            ->withWhereHas('wawancara')
             ->when($this->search, fn($q) => $q->where('name', 'like', '%' . $this->search . '%'))
             ->paginate(10);
     }

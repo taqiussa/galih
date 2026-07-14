@@ -56,4 +56,14 @@ class Siswa extends Authenticatable
     {
         return $this->belongsTo(Seragam::class, 'kode_daftar', 'kode_daftar');
     }
+
+    /**
+     * Get the wawancara that owns the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function wawancara(): BelongsTo
+    {
+        return $this->belongsTo(Wawancara::class, 'kode_daftar', 'kode_daftar')->withDefault();
+    }
 }

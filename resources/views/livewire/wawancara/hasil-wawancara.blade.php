@@ -1,67 +1,119 @@
 <x-card>
-    <h2 class="my-3 text-xl font-bold text-slate-600">Hasil Seleksi Wawancara</h2>
+    <h2 class="my-3 text-xl font-bold text-slate-600">
+        Hasil Seleksi Wawancara
+    </h2>
+
     <section class="px-7 bg-white border-b">
+
         <div class="my-3">
-            <x-input wire:model.live.debounce.500ms="search" icon="magnifying-glass" placeholder="Cari ..."
+            <x-input wire:model.live.debounce.500ms="search" icon="magnifying-glass" placeholder="Cari..."
                 class="w-auto text-slate-600" />
         </div>
-        <div class="overflow-x-auto relative">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full text-sm text-left text-gray-500">
+
+                <thead class="text-xs uppercase bg-gray-50 text-gray-700">
                     <tr>
-                        <th scope="col" class="py-3 px-6">
-                            #
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            Nama
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            Kode Daftar
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            Fisik
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            Penglihatan
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            Kesehatan
-                        </th>
+                        <th class="py-3 px-4">#</th>
+                        <th class="py-3 px-4">Nama</th>
+                        <th class="py-3 px-4">Kode Daftar</th>
+                        <th class="py-3 px-4">Motivasi</th>
+                        <th class="py-3 px-4">Minat</th>
+                        <th class="py-3 px-4">Kondisi</th>
+                        <th class="py-3 px-4">Harapan</th>
                     </tr>
                 </thead>
+
                 <tbody>
+
                     @foreach ($this->listSiswa as $key => $user)
-                        <tr :key="$key"
-                            class="odd:bg-white even:bg-slate-200 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-300">
-                            <td scope="row"
-                                class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        @php
+                            $w = $user->wawancara;
+                        @endphp
+
+                        <tr class="odd:bg-white even:bg-slate-100 border-b hover:bg-slate-200">
+
+                            <td class="py-2 px-4">
                                 {{ $this->listSiswa->firstItem() + $key }}
                             </td>
-                            <td scope="row"
-                                class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                            <td class="py-2 px-4 font-semibold">
                                 {{ $user->name }}
                             </td>
-                            <td class="py-2 px-6">
+
+                            <td class="py-2 px-4">
                                 {{ $user->kode_daftar }}
                             </td>
-                            <td class="py-2 px-6">
-                                Tinggi : {{ $user->seleksiWawancara?->tinggi }} <br>
-                                Berat : {{ $user->seleksiWawancara?->berat }} <br>
-                                Rambut : {{ $user->seleksiWawancara?->model_rambut }} <br>
+
+                            <td class="py-2 px-4">
+                                <div>
+                                    <b>Alasan :</b><br>
+                                    {{ Str::limit($w?->alasan_memilih, 80) }}
+                                </div>
+
+                                <div class="mt-2">
+                                    <b>Keinginan :</b>
+                                    {{ $w?->keinginan }}
+                                </div>
+
+                                <div>
+                                    <b>Tata tertib :</b>
+                                    {{ $w?->siap_tata_tertib ? 'Siap' : 'Belum Siap' }}
+                                </div>
                             </td>
-                            <td class="py-2 px-6">
-                                Minus : {{ $user->seleksiWawancara?->mata_minus }} <br>
+
+                            <td class="py-2 px-4">
+                                <div>
+                                    <b>Ekstrakurikuler :</b><br>
+                                    {{ $w?->ekstrakurikuler?->nama }}
+                                </div>
+
+                                <div class="mt-2">
+                                    <b>Mapel Favorit :</b><br>
+                                    {{ $w?->mata_pelajaran_favorit }}
+                                </div>
                             </td>
-                            <td class="py-2 px-6">
-                                {{ $user->seleksiWawancara?->penyakit_lain }}
+
+                            <td class="py-2 px-4">
+                                <div>
+                                    <b>Perilaku :</b><br>
+                                    {{ Str::limit($w?->perilaku_buruk, 50) ?: '-' }}
+                                </div>
+
+                                <div class="mt-2">
+                                    <b>Pergaulan :</b><br>
+                                    {{ Str::limit($w?->kendala_pergaulan, 50) ?: '-' }}
+                                </div>
+
+                                <div class="mt-2">
+                                    <b>Kehidupan :</b><br>
+                                    {{ Str::limit($w?->kendala_kehidupan, 50) ?: '-' }}
+                                </div>
+
+                                <div class="mt-2">
+                                    <b>Penyakit :</b><br>
+                                    {{ Str::limit($w?->riwayat_penyakit, 50) ?: '-' }}
+                                </div>
                             </td>
+
+                            <td class="py-2 px-4">
+                                {{ Str::limit($w?->harapan, 80) }}
+                            </td>
+
                         </tr>
                     @endforeach
+
                 </tbody>
+
             </table>
+
         </div>
+
         <div class="mt-3">
             {{ $this->listSiswa->links() }}
         </div>
+
     </section>
 </x-card>
