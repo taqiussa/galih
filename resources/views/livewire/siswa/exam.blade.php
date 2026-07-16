@@ -88,6 +88,41 @@
                     <p class="text-xl text-gray-700 mb-8">
                         Anda telah menyelesaikan seluruh tes masuk SMP Miftahul Huda.
                     </p>
+                    <div class="card bg-primary text-primary-content shadow">
+
+                        <div class="card-body p-5 text-center">
+
+                            <h3 class="font-semibold text-lg">
+                                Hasil Nilai
+                            </h3>
+
+                            <div class="text-6xl font-extrabold leading-none mt-2">
+                                {{ $this->hasil?->akademik?->nilai ?? '-' }}
+                            </div>
+
+                            <div class="divider my-3"></div>
+
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+
+                                <div class="rounded-lg bg-white/10 p-2">
+                                    <div class="opacity-80">Benar</div>
+                                    <div class="font-bold text-lg">
+                                        {{ $this->hasil?->akademik?->benar ?? 0 }}
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg bg-white/10 p-2">
+                                    <div class="opacity-80">Salah</div>
+                                    <div class="font-bold text-lg">
+                                        {{ $this->hasil?->akademik?->salah ?? 0 }}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
                     <x-button href="{{ route('siswa.logout') }}" wire:navigate positive label="Logout & Kembali ke Beranda"
                         class="px-12" />
                 </x-card>

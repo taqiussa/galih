@@ -210,7 +210,7 @@
                         @if ($semuaTesSelesai && $rataRata >= 65)
                             Diterima
                         @elseif ($semuaTesSelesai)
-                            wajib mengikuti tes formatif / lanjutan
+                            wajib mengikuti tes ulang / remidi
                         @else
                             belum selesai mengikuti tes
                         @endif

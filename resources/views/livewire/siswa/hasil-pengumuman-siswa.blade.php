@@ -85,6 +85,85 @@
                             seleksi Penerimaan Peserta Didik Baru.
                         </p>
 
+                        @php
+                            $hafalan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'hafalan');
+                            $bacaan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'alquran');
+                        @endphp
+
+                        <details class="mt-8 group rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+                            <summary
+                                class="flex items-center justify-between cursor-pointer px-6 py-5 font-semibold text-lg list-none">
+
+                                <div class="flex items-center gap-3">
+                                    <x-icon name="clipboard-document-list" class="w-6 h-6 text-primary" />
+                                    <span>Lihat Hasil Seleksi</span>
+                                </div>
+
+                                <div class="transition-transform duration-300 group-open:rotate-180">
+                                    <x-icon name="chevron-down" class="w-5 h-5" />
+                                </div>
+
+                            </summary>
+
+                            <div class="border-t border-base-200 p-6">
+
+                                <div class="grid gap-5 md:grid-cols-3">
+
+                                    <div class="card bg-primary text-primary-content shadow">
+
+                                        <div class="card-body items-center text-center">
+
+                                            <div class="text-sm opacity-80">
+                                                Akademik
+                                            </div>
+
+                                            <div class="text-5xl font-extrabold">
+                                                {{ $this->hasil?->akademik?->nilai ?? '-' }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card bg-success text-success-content shadow">
+
+                                        <div class="card-body items-center text-center">
+
+                                            <div class="text-sm opacity-80">
+                                                Hafalan
+                                            </div>
+
+                                            <div class="text-5xl font-extrabold">
+                                                {{ $hafalan?->nilai ?? '-' }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card bg-secondary text-secondary-content shadow">
+
+                                        <div class="card-body items-center text-center">
+
+                                            <div class="text-sm opacity-80">
+                                                Bacaan Al-Qur'an
+                                            </div>
+
+                                            <div class="text-5xl font-extrabold">
+                                                {{ $bacaan?->nilai ?? '-' }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </details>
+
                         <div class="mt-8 bg-success/10 border border-success/20 rounded-xl p-5">
 
                             <p class="font-semibold">
@@ -114,6 +193,108 @@
                             Anda belum dinyatakan lulus pada seleksi
                             Penerimaan Peserta Didik Baru.
                         </p>
+
+                        @php
+                            $hafalan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'hafalan');
+                            $bacaan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'alquran');
+                        @endphp
+
+                        <details class="mt-8 group rounded-2xl border border-base-300 bg-base-100 shadow-sm">
+
+                            <summary
+                                class="flex items-center justify-between cursor-pointer px-6 py-5 font-semibold text-lg list-none">
+
+                                <div class="flex items-center gap-3">
+                                    <x-icon name="clipboard-document-list" class="w-6 h-6 text-primary" />
+                                    <span>Lihat Hasil Seleksi</span>
+                                </div>
+
+                                <div class="transition-transform duration-300 group-open:rotate-180">
+                                    <x-icon name="chevron-down" class="w-5 h-5" />
+                                </div>
+
+                            </summary>
+
+                            <div class="border-t border-base-200 p-6">
+
+                                <div class="grid gap-5 md:grid-cols-3">
+
+                                    <div class="card bg-primary text-primary-content shadow">
+
+                                        <div class="card-body p-5 text-center">
+
+                                            <h3 class="font-semibold text-lg">
+                                                Akademik
+                                            </h3>
+
+                                            <div class="text-6xl font-extrabold leading-none mt-2">
+                                                {{ $this->hasil?->akademik?->nilai ?? '-' }}
+                                            </div>
+
+                                            <div class="text-sm opacity-80">
+                                                Nilai Akhir
+                                            </div>
+
+                                            <div class="divider my-3"></div>
+
+                                            <div class="grid grid-cols-2 gap-3 text-sm">
+
+                                                <div class="rounded-lg bg-white/10 p-2">
+                                                    <div class="opacity-80">Benar</div>
+                                                    <div class="font-bold text-lg">
+                                                        {{ $this->hasil?->akademik?->benar ?? 0 }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="rounded-lg bg-white/10 p-2">
+                                                    <div class="opacity-80">Salah</div>
+                                                    <div class="font-bold text-lg">
+                                                        {{ $this->hasil?->akademik?->salah ?? 0 }}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card bg-success text-success-content shadow">
+
+                                        <div class="card-body items-center text-center">
+
+                                            <div class="text-sm opacity-80">
+                                                Hafalan
+                                            </div>
+
+                                            <div class="text-5xl font-extrabold">
+                                                {{ $hafalan?->nilai ?? '-' }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card bg-secondary text-secondary-content shadow">
+
+                                        <div class="card-body items-center text-center">
+
+                                            <div class="text-sm opacity-80">
+                                                Bacaan Al-Qur'an
+                                            </div>
+
+                                            <div class="text-5xl font-extrabold">
+                                                {{ $bacaan?->nilai ?? '-' }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </details>
 
                         <div class="mt-8 bg-error/10 border border-error/20 rounded-xl p-5">
 

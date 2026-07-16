@@ -85,15 +85,15 @@
                 </tr>
                 <tr>
                     <td class="w-2/5 pl-10 capitalize">kelurahan / desa </td>
-                    <td class="uppercase">: {{ $user->biodata?->village?->name }}</td>
+                    <td class="uppercase">: {{ $user->biodata?->desa }}</td>
                 </tr>
                 <tr>
                     <td class="w-2/5 pl-10 capitalize">kecamatan </td>
-                    <td class="uppercase">: {{ $user->biodata?->district?->name }}</td>
+                    <td class="uppercase">: {{ $user->biodata?->kecamatan }}</td>
                 </tr>
                 <tr>
                     <td class="w-2/5 pl-10 capitalize">kabupaten / kota </td>
-                    <td class="uppercase">: {{ $user->biodata?->city?->name }}</td>
+                    <td class="uppercase">: {{ $user->biodata?->kabupaten }}</td>
                 </tr>
                 <tr>
                     <td class="w-2/5 pl-10 capitalize">provinsi </td>
@@ -188,7 +188,7 @@
         </div>
     </div>
 
-    <div style="page-break-before: always"></div>
+    {{-- <div style="page-break-before: always"></div>
     <div class="border-b-2 border-slate-600 pb-2">
         <div class="relative flex items-center justify-center">
             <img src="{{ asset('images/logo56.png') }}" alt="logo" class="absolute left-0 w-24 h-24">
@@ -353,5 +353,5 @@
                 </span>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

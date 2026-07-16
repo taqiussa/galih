@@ -38,7 +38,8 @@ class HasilPengumuman extends Component
                 'biodata:kode_daftar,nama_sekolah_dasar',
                 'akademik',
                 'seleksiAgama',
-                'seleksiWawancara'
+                'seleksiWawancara',
+                'wawancara'
             ])
             ->when($this->search, fn($q) => $q->where('name', 'like', '%' . $this->search . '%'))
             ->when(

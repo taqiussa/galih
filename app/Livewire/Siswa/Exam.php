@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Akademik;
 use App\Models\Jawaban;
 use App\Models\Pertanyaan;
+use App\Models\Siswa;
 use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
@@ -153,5 +154,16 @@ class Exam extends Component
             'answeredQuestions' => $this->answeredQuestions,
             'totalQuestions'    => $this->questions->count(),
         ]);
+    }
+
+    #[Computed()]
+    public function hasil()
+    {
+        return Siswa::query()
+            ->whereNis(Auth::getUser()->nis)
+            ->with([
+                'akademik',
+            ])
+            ->first();
     }
 }
