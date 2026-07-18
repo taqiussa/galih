@@ -19,7 +19,7 @@ class PrintPengumumanController extends Controller
                 'akademik',
                 'biodata',
                 'seleksiAgama',
-                'seleksiWawancara'
+                'wawancara'
             ])
             ->first();
 

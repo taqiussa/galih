@@ -1,7 +1,10 @@
 <x-card>
 
     <div class="space-y-6">
-
+        <div class="py-3">
+            <x-button label="Download" wire:click.prevent='download_data' icon="arrow-down-tray"
+                wire:loading.attr='disabled' spinner="download_data" />
+        </div>
         <div class="text-center">
             <h2 class="text-lg font-bold uppercase text-slate-700">
                 Rekapitulasi Hasil Ukur Seragam

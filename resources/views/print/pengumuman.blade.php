@@ -39,140 +39,154 @@
         Miftahul Huda, yang
         meliputi :
     </div>
+    @php
+        $alquran = $user->seleksiAgama->firstWhere('jenis', 'alquran');
+        $hafalan = $user->seleksiAgama->firstWhere('jenis', 'hafalan');
+        $wawancara = $user->wawancara;
+
+    @endphp
+
     <div class="pt-2 pl-10 mb-2 text-sm text-slate-600">
-        <table class="w-[80%] capitalize border border-slate-600">
+        <table class="w-full border border-slate-600">
+            <thead>
+                <tr class="font-bold text-center bg-slate-100">
+                    <td class="border border-slate-600 py-1 w-10">No</td>
+                    <td class="border border-slate-600 py-1">Jenis Tes</td>
+                    <td class="border border-slate-600 py-1">Hasil</td>
+                    <td class="border border-slate-600 py-1">Keterangan</td>
+                </tr>
+            </thead>
+
             <tbody>
-                <tr class="font-bold text-center">
-                    <td class="border border-slate-600 py-1 px-2 w-[5%]">no.</td>
-                    <td class="px-2 py-1 border border-slate-600">jenis tes</td>
-                    <td class="px-2 py-1 border border-slate-600">hasil</td>
-                    <td class="px-2 py-1 border border-slate-600">keterangan</td>
-                </tr>
-                <tr>
-                    @php
-                        $nilaiAkademik = $user->akademik?->nilai;
-                        $nilaiAlquran = $user->seleksiAgama->where('jenis', 'alquran')->first()?->nilai;
-                        $nilaiHafalan = $user->seleksiAgama->where('jenis', 'hafalan')->first()?->nilai;
 
-                        $jumlahNilai = ($nilaiAkademik ?? 0) + ($nilaiAlquran ?? 0) + ($nilaiHafalan ?? 0);
+                <tr>
+                    <td class="border border-slate-600 text-center">1</td>
+                    <td class="border border-slate-600 px-2">Tes Akademik</td>
+                    <td class="border border-slate-600 text-center">
+                        {{ $user->akademik?->nilai }}
+                    </td>
+                    <td class="border border-slate-600 px-2">
+                        Benar : {{ $user->akademik?->benar ?? '-' }} <br>
+                        Salah : {{ $user->akademik?->salah ?? '-' }}
+                    </td>
+                </tr>
 
-                        $semuaTesSelesai =
-                            !is_null($nilaiAkademik) && !is_null($nilaiAlquran) && !is_null($nilaiHafalan);
+                <tr>
+                    <td class="border border-slate-600 text-center">2</td>
+                    <td class="border border-slate-600 px-2">Tes Baca Al-Qur'an</td>
+                    <td class="border border-slate-600 text-center">
+                        {{ $alquran?->nilai }}
+                    </td>
+                    <td class="border border-slate-600 px-2">
+                        Jenis : {{ $alquran?->jenis }}
+                    </td>
+                </tr>
 
-                        $rataRata = $semuaTesSelesai ? floor($jumlahNilai / 3) : null;
-                    @endphp
-                    <td class="border border-slate-600 py-1 px-2 w-[5%] text-center" rowspan="5">1.</td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold">hasil tes akademik, meliputi :</td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="5">
-                        {{ $nilaiAkademik }}
+                <tr>
+                    <td class="border border-slate-600 text-center">3</td>
+                    <td class="border border-slate-600 px-2">Tes Hafalan</td>
+                    <td class="border border-slate-600 text-center">
+                        {{ $hafalan?->nilai }}
                     </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="5">
-                        @if (!is_null($nilaiAkademik) && $nilaiAkademik >= 85)
-                            Sangat Baik
-                        @elseif (!is_null($nilaiAkademik) && $nilaiAkademik >= 75)
-                            Baik
-                        @elseif(!is_null($nilaiAkademik) && $nilaiAkademik >= 65)
-                            Cukup
-                        @else
-                            Kurang
-                        @endif
+                    <td class="border border-slate-600 px-2">
+                        Jenis : {{ $hafalan?->jenis }}
                     </td>
                 </tr>
+
                 <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">a. Bahasa Indonesia</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">b. pendidikan agama dan budi pekerti</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">c. matematika</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">d. pengetahuan umum</td>
-                </tr>
-                <tr>
-                    <td class="border border-slate-600 py-1 px-2 w-[5%] text-center" rowspan="4">2.</td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold">hasil tes baca Al-Qur'an, meliputi :
-                    </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="4">
-                        {{ $nilaiAlquran }}
-                    </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="4">
-                        @if (!is_null($nilaiAlquran) && $nilaiAlquran >= 85)
-                            Sangat Baik
-                        @elseif (!is_null($nilaiAlquran) && $nilaiAlquran >= 75)
-                            Baik
-                        @elseif(!is_null($nilaiAlquran) && $nilaiAlquran >= 65)
-                            Cukup
-                        @else
-                            Kurang
-                        @endif
+                    <td colspan="2" class="border border-slate-600 px-2">Tes Wawancara</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
                     </td>
                 </tr>
+
                 <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">a. tajwid</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">b. makhrojul huruf</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">c. kelancaran membaca</td>
-                </tr>
-                </tr>
-                <tr>
-                    <td class="border border-slate-600 py-1 px-2 w-[5%] text-center" rowspan="4">3.</td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold">hasil tes hafalan, meliputi :
-                    </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="4">
-                        {{ $nilaiHafalan }}
-                    </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 text-center font-bold text-xl" rowspan="4">
-                        @if (!is_null($nilaiHafalan) && $nilaiHafalan >= 85)
-                            Sangat Baik
-                        @elseif (!is_null($nilaiHafalan) && $nilaiHafalan >= 75)
-                            Baik
-                        @elseif($nilaiHafalan && $nilaiHafalan >= 65)
-                            Cukup
-                        @else
-                            Kurang
-                        @endif
+                    <td class="border border-slate-600 text-center">4</td>
+                    <td class="border border-slate-600 px-2">Alasan Memilih</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->alasan_memilih }}
                     </td>
                 </tr>
+
                 <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">a. tajwid</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">b. makhrojul huruf</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600">c. kelancaran menghafal</td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold" colspan="2">jumlah nilai</td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold text-center text-lg">
-                        {{ $nilaiAkademik + $nilaiAlquran + $nilaiHafalan }}
-                    </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold"></td>
-                </tr>
-                <tr>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold" colspan="2">rata - rata nilai</td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold text-center text-lg">
-                        @if ($semuaTesSelesai)
-                            {{ $rataRata }}
-                        @endif
-                    </td>
-                    <td class="px-2 py-1 pl-5 border border-slate-600 font-bold text-center text-lg">
-                        @if ($semuaTesSelesai && $rataRata >= 85)
-                            Sangat Baik
-                        @elseif ($semuaTesSelesai && $rataRata >= 75)
-                            Baik
-                        @elseif ($semuaTesSelesai && $rataRata >= 65)
-                            Cukup
-                        @elseif ($semuaTesSelesai)
-                            Kurang
-                        @endif
+                    <td class="border border-slate-600 text-center">5</td>
+                    <td class="border border-slate-600 px-2">Keinginan</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->keinginan }}
                     </td>
                 </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">6</td>
+                    <td class="border border-slate-600 px-2">Siap Tata Tertib</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->siap_tata_tertib ? 'Ya' : 'Tidak' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">7</td>
+                    <td class="border border-slate-600 px-2">Ekstrakurikuler</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->ekstrakurikuler?->nama ?? '-' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">8</td>
+                    <td class="border border-slate-600 px-2">Mata Pelajaran Favorit</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->mata_pelajaran_favorit }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">9</td>
+                    <td class="border border-slate-600 px-2">Perilaku Buruk</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->perilaku_buruk ?: '-' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">10</td>
+                    <td class="border border-slate-600 px-2">Kendala Pergaulan</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->kendala_pergaulan ?: '-' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">11</td>
+                    <td class="border border-slate-600 px-2">Kendala Kehidupan</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->kendala_kehidupan ?: '-' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">12</td>
+                    <td class="border border-slate-600 px-2">Riwayat Penyakit</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->riwayat_penyakit ?: '-' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">13</td>
+                    <td class="border border-slate-600 px-2">Harapan</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->harapan }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="border border-slate-600 text-center">14</td>
+                    <td class="border border-slate-600 px-2">Catatan Pewawancara</td>
+                    <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->catatan ?: '-' }}
+                    </td>
+                </tr>
+
             </tbody>
         </table>
     </div>
@@ -207,9 +221,9 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="text-xl font-bold text-center uppercase">
-                        @if ($semuaTesSelesai && $rataRata >= 65)
+                        @if ($user->diterima == 'diterima')
                             Diterima
-                        @elseif ($semuaTesSelesai)
+                        @elseif ($user->diterima == 'tidak diterima')
                             wajib mengikuti tes ulang / remidi
                         @else
                             belum selesai mengikuti tes

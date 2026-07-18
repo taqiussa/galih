@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Seragam;
 
+use App\Exports\ExportSeragam;
 use App\Models\Siswa;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HasilUkurSeragam extends Component
 {
@@ -16,6 +18,11 @@ class HasilUkurSeragam extends Component
     public function updatedSearch()
     {
         $this->resetPage();
+    }
+
+    public function download_data()
+    {
+        return Excel::download(new ExportSeragam(), 'Hasil Ukur Seragam.xlsx');
     }
 
     #[Computed]

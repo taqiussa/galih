@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Wawancara;
 
+use App\Exports\ExportWawancara;
 use App\Models\Siswa;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 #[Title('Hasil Wawancara')]
 class HasilWawancara extends Component
@@ -30,6 +32,12 @@ class HasilWawancara extends Component
             ->when($this->search, fn($q) => $q->where('name', 'like', '%' . $this->search . '%'))
             ->paginate(10);
     }
+
+    public function download_data()
+    {
+        return Excel::download(new ExportWawancara(), 'Hasil Seleksi Wawancara.xlsx');
+    }
+
 
     public function render()
     {

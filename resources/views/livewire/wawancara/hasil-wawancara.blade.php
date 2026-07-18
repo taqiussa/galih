@@ -9,7 +9,10 @@
             <x-input wire:model.live.debounce.500ms="search" icon="magnifying-glass" placeholder="Cari..."
                 class="w-auto text-slate-600" />
         </div>
-
+        <div class="py-3">
+            <x-button label="Download" wire:click.prevent='download_data' icon="arrow-down-tray"
+                wire:loading.attr='disabled' spinner="download_data" />
+        </div>
         <div class="overflow-x-auto">
 
             <table class="w-full text-sm text-left text-gray-500">

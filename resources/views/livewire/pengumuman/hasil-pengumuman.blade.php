@@ -8,8 +8,8 @@
             </div>
             <x-native-select wire:model.live='terima'>
                 <option value="">Pilih</option>
-                <option value="0">Tidak Diterima</option>
-                <option value="1">Diterima</option>
+                <option value="tidak diterima">Tidak Diterima</option>
+                <option value="diterima">Diterima</option>
             </x-native-select>
         </div>
         <div class="py-3">
@@ -38,9 +38,9 @@
                         <th scope="col" class="py-3 px-6">
                             Seleksi Agama
                         </th>
-                        {{-- <th scope="col" class="py-3 px-6">
-                            Seleksi Wawancara
-                        </th> --}}
+                        <th scope="col" class="py-3 px-6">
+                            Hasil Akhir
+                        </th>
                         <th scope="col" class="py-3 px-6">
                             Aksi
                         </th>
@@ -71,13 +71,9 @@
                                 Bacaan : {{ $user->seleksiAgama->where('jenis', 'alquran')->first()?->nilai }}
                                 Hafalan : {{ $user->seleksiAgama->where('jenis', 'hafalan')->first()?->nilai }}
                             </td>
-                            {{-- <td class="py-2 px-6">
-                                Tinggi : {{ $user->seleksiWawancara?->tinggi }} <br>
-                                Berat : {{ $user->seleksiWawancara?->berat }} <br>
-                                Rambut : {{ $user->seleksiWawancara?->model_rambut }} <br>
-                                Minus : {{ $user->seleksiWawancara?->mata_minus }} <br>
-                                Penyakit : {{ $user->seleksiWawancara?->penyakit_lain }}
-                            </td> --}}
+                            <td class="py-2 px-6">
+                                {{ $user->diterima }}
+                            </td>
                             <td class="flex text-center py-2 px-6">
                                 <x-button href="{!! route('pengumuman.print-pengumuman.print', ['kode_daftar' => $user->kode_daftar]) !!}" target="blank__" label="print" icon="printer"
                                     positive />
