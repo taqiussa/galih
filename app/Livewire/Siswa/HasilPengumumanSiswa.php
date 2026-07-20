@@ -31,6 +31,7 @@ class HasilPengumumanSiswa extends Component
             ->with([
                 'akademik',
                 'seleksiAgama',
+                'wawancara'
             ])
             ->first();
     }

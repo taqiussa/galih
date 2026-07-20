@@ -1,5 +1,5 @@
 @extends('layouts.print')
-@section('title', 'Print Formulir Pendaftaran')
+@section('title', 'Print Pengumuman')
 @section('content')
     <div class="border-b-2 border-slate-600 pb-2">
         <div class="relative flex items-center justify-center">

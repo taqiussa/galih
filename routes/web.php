@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\GetPendaftarController;
 use App\Http\Controllers\Auth\GetSiswaDiterimaController;
 use App\Http\Controllers\Pendaftaran\PrintFormulirController;
 use App\Http\Controllers\Print\PrintPengumumanController;
+use App\Http\Controllers\Siswa\PrintPengumumanController as SiswaPrintPengumumanController;
 use App\Livewire\Agama\HasilAgama;
 use App\Livewire\Agama\InputAgama;
 use App\Livewire\Akademik\AturTes;
@@ -44,6 +45,7 @@ Route::middleware(['auth:siswa'])->group(function () {
     Route::get('hasil-pengumuman-siswa', HasilPengumumanSiswa::class)->name('siswa.hasil-pengumuman-siswa')->lazy();
     Route::get('siswa/dashboard', SiswaDashboard::class)->name('siswa.dashboard')->lazy();
     Route::get('siswa/logout', LogoutSiswa::class)->name('siswa.logout')->lazy();
+    Route::get('siswa/print-pengumuman/print', SiswaPrintPengumumanController::class)->name('siswa.print-pengumuman.print');
 });
 
 Route::middleware(['guest'])->group(function () {

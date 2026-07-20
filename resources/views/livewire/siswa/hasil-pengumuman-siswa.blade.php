@@ -62,7 +62,7 @@
                         </p>
 
                     </div>
-                @elseif($siswa->diterima)
+                @elseif($siswa->diterima == 'diterima')
                     <div class="text-center py-8">
 
                         <div class="w-28 h-28 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-6">
@@ -171,6 +171,10 @@
                                 yang telah ditentukan oleh panitia.
                             </p>
 
+                            <x-button href="{!! route('siswa.print-pengumuman.print', ['kode_daftar' => auth()->user()->kode_daftar]) !!}" target="blank__" label="print hasil" icon="printer"
+                                positive />
+
+
                         </div>
 
                     </div>
@@ -189,10 +193,11 @@
                             Mohon Maaf
                         </h2>
 
-                        <p class="mt-4 text-lg">
+                        <p class="mt-4 text-lg gap-2">
                             Anda belum dinyatakan lulus pada seleksi
                             Penerimaan Peserta Didik Baru.
                         </p>
+
 
                         @php
                             $hafalan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'hafalan');
@@ -304,6 +309,9 @@
                                 terbaik pada kesempatan berikutnya.
                             </p>
 
+                            <x-button href="{!! route('siswa.print-pengumuman.print', ['kode_daftar' => auth()->user()->kode_daftar]) !!}" target="blank__" label="print hasil" icon="printer"
+                                positive />
+
                         </div>
 
                     </div>
@@ -312,7 +320,6 @@
             </div>
 
         </div>
-
     </div>
 
 </x-card>

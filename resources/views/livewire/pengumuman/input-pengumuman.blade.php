@@ -10,8 +10,8 @@
             <div class="lg:grid lg:grid-cols-4 lg:gap-2 lg:space-y-0 flex flex-col space-y-4">
                 <x-native-select wire:model='terima' label='Pilih Pengumuman'>
                     <option value="">Pilih Hasil</option>
-                    <option value="1">Diterima</option>
-                    <option value="0">Tidak Diterima</option>
+                    <option value="diterima">Diterima</option>
+                    <option value="tidak diterima">Tidak Diterima</option>
                 </x-native-select>
             </div>
             <div class="py-5">
