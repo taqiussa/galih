@@ -39,6 +39,9 @@
                             Seleksi Agama
                         </th>
                         <th scope="col" class="py-3 px-6">
+                            Hasil Wawancara
+                        </th>
+                        <th scope="col" class="py-3 px-6">
                             Hasil Akhir
                         </th>
                         <th scope="col" class="py-3 px-6">
@@ -70,6 +73,9 @@
                             <td class="py-2 px-6">
                                 Bacaan : {{ $user->seleksiAgama->where('jenis', 'alquran')->first()?->nilai }}
                                 Hafalan : {{ $user->seleksiAgama->where('jenis', 'hafalan')->first()?->nilai }}
+                            </td>
+                            <td class="py-2 px-6">
+                                Catatan Wawancara : {{ $user->wawancara->catatan }}
                             </td>
                             <td class="py-2 px-6">
                                 {{ $user->diterima }}

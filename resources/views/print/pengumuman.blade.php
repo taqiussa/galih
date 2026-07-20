@@ -99,7 +99,7 @@
                     </td>
                 </tr>
 
-                <tr>
+                {{-- <tr>
                     <td class="border border-slate-600 text-center">4</td>
                     <td class="border border-slate-600 px-2">Alasan Memilih</td>
                     <td colspan="2" class="border border-slate-600 px-2">
@@ -177,11 +177,11 @@
                     <td colspan="2" class="border border-slate-600 px-2">
                         {{ $wawancara?->harapan }}
                     </td>
-                </tr>
+                </tr> --}}
 
                 <tr>
-                    <td class="border border-slate-600 text-center">14</td>
-                    <td class="border border-slate-600 px-2">Catatan Pewawancara</td>
+                    {{-- <td class="border border-slate-600 text-center">14</td> --}}
+                    <td colspan="2" class="border border-slate-600 px-2">Catatan Pewawancara</td>
                     <td colspan="2" class="border border-slate-600 px-2">
                         {{ $wawancara?->catatan ?: '-' }}
                     </td>
