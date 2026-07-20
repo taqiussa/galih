@@ -160,7 +160,7 @@ class Exam extends Component
     public function hasil()
     {
         return Siswa::query()
-            ->whereNis(Auth::getUser()->nis)
+            ->whereKodeDaftar(Auth::getUser()->kode_daftar)
             ->with([
                 'akademik',
             ])
