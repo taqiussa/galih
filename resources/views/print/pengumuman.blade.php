@@ -94,8 +94,10 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2" class="border border-slate-600 px-2">Tes Wawancara</td>
+                    <td class="border border-slate-600 text-center">3</td>
+                    <td class="border border-slate-600 px-2">Tes Wawancara</td>
                     <td colspan="2" class="border border-slate-600 px-2">
+                        {{ $wawancara?->catatan ?: '-' }}
                     </td>
                 </tr>
 
@@ -179,13 +181,13 @@
                     </td>
                 </tr> --}}
 
-                <tr>
-                    {{-- <td class="border border-slate-600 text-center">14</td> --}}
+                {{-- <tr>
+                    <td class="border border-slate-600 text-center">14</td>
                     <td colspan="2" class="border border-slate-600 px-2">Catatan Pewawancara</td>
                     <td colspan="2" class="border border-slate-600 px-2">
                         {{ $wawancara?->catatan ?: '-' }}
                     </td>
-                </tr>
+                </tr> --}}
 
             </tbody>
         </table>
