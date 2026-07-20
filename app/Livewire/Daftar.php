@@ -189,7 +189,7 @@ class Daftar extends Component
                     'kode_daftar' => $this->kode_daftar,
                     'password' => bcrypt('12345678'),
                     'tanggal_daftar' => date('Y-m-d'),
-                    'is_online' => 0,
+                    'is_online' => 1,
                     'tingkat' => $this->tingkat,
                     'user_id' => Auth::id(),
                 ]
