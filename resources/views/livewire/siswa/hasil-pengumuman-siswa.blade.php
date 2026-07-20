@@ -82,13 +82,10 @@
                             <span class="font-bold text-success">
                                 LULUS
                             </span>
-                            seleksi Penerimaan Peserta Didik Baru.
+                            seleksi Penerimaan Peserta Didik Baru. <br>
+                            <x-button href="{!! route('siswa.print-pengumuman.print', ['kode_daftar' => auth()->user()->kode_daftar]) !!}" target="blank__" label="print hasil" icon="printer"
+                                positive />
                         </p>
-
-                        @php
-                            $hafalan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'hafalan');
-                            $bacaan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'alquran');
-                        @endphp
 
                         <details class="mt-8 group rounded-2xl border border-base-300 bg-base-100 shadow-sm">
 
@@ -106,61 +103,187 @@
 
                             </summary>
 
-                            <div class="border-t border-base-200 p-6">
+                            <div class="border-b-2 border-slate-600 pb-2">
+                                <div class="relative flex items-center justify-center">
+                                    <img src="{{ asset('images/logo56.png') }}" alt="logo"
+                                        class="absolute left-0 w-24 h-24">
 
-                                <div class="grid gap-5 md:grid-cols-3">
-
-                                    <div class="card bg-primary text-primary-content shadow">
-
-                                        <div class="card-body items-center text-center">
-
-                                            <div class="text-sm opacity-80">
-                                                Akademik
-                                            </div>
-
-                                            <div class="text-5xl font-extrabold">
-                                                {{ $this->hasil?->akademik?->nilai ?? '-' }}
-                                            </div>
-
+                                    <div class="text-center">
+                                        <div class="uppercase tracking-wide text-slate-600 font-bold">
+                                            Yayasan Miftahul Huda
                                         </div>
 
-                                    </div>
-
-                                    <div class="card bg-success text-success-content shadow">
-
-                                        <div class="card-body items-center text-center">
-
-                                            <div class="text-sm opacity-80">
-                                                Hafalan
-                                            </div>
-
-                                            <div class="text-5xl font-extrabold">
-                                                {{ $hafalan?->nilai ?? '-' }}
-                                            </div>
-
+                                        <div class="text-2xl uppercase tracking-[.2em] text-slate-600 font-bold">
+                                            SMP Miftahul Huda
                                         </div>
 
-                                    </div>
-
-                                    <div class="card bg-secondary text-secondary-content shadow">
-
-                                        <div class="card-body items-center text-center">
-
-                                            <div class="text-sm opacity-80">
-                                                Bacaan Al-Qur'an
+                                        <div class="text-slate-600 text-xs mt-1">
+                                            <div>Jl. Masjid No. 2 Peron - Limbangan, Kab. Kendal - Jawa Tengah</div>
+                                            <div>HP. 087880001111, 082280001111, 085780001111 E-mail: smpmifda@gmail.com
                                             </div>
-
-                                            <div class="text-5xl font-extrabold">
-                                                {{ $bacaan?->nilai ?? '-' }}
-                                            </div>
-
+                                            <div>Website : www.smpmiftahulhudaperon.com</div>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
+                            <h1 class="mb-2 font-bold text-center uppercase text-slate-700 text-md">
+                                pengumuman
+                                <br>
+                                no : psb/smp-mifda/{{ str_replace(' ', '', $this->hasil->biodata?->tahun) }}
+                            </h1>
+                            <h1 class="text-sm text-center uppercase text-slate-600">tentang</h1>
+                            <h1 class="mb-10 text-sm font-bold text-center uppercase text-slate-700">
+                                penerimaan santri baru
+                                <br>
+                                SMP MIFTAHUL HUDA
+                                tahun {{ $this->hasil->biodata?->tahun }}
+                            </h1>
+                            <div class="px-10 text-sm text-slate-600">
+                                Berdasarkan hasil tes seleksi penerimaan peserta didik baru tahun ajaran
+                                {{ $this->hasil->biodata?->tahun }} SMP
+                                Miftahul Huda, yang
+                                meliputi :
+                            </div>
+                            @php
+                                $alquran = $this->hasil->seleksiAgama->firstWhere('jenis', 'alquran');
+                                $hafalan = $this->hasil->seleksiAgama->firstWhere('jenis', 'hafalan');
+                                $wawancara = $this->hasil->wawancara;
+
+                            @endphp
+
+                            <div class="pt-2 pl-10 mb-2 text-sm text-slate-600">
+                                <table class="w-full border border-slate-600">
+                                    <thead>
+                                        <tr class="font-bold text-center bg-slate-100">
+                                            <td class="border border-slate-600 py-1 w-10">No</td>
+                                            <td class="border border-slate-600 py-1">Jenis Tes</td>
+                                            <td class="border border-slate-600 py-1">Hasil</td>
+                                            <td class="border border-slate-600 py-1">Keterangan</td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">1</td>
+                                            <td class="border border-slate-600 px-2">Tes Akademik</td>
+                                            <td class="border border-slate-600 text-center">
+                                                {{ $this->hasil->akademik?->nilai }}
+                                            </td>
+                                            <td class="border border-slate-600 px-2">
+                                                Benar : {{ $this->hasil->akademik?->benar ?? '-' }} <br>
+                                                Salah : {{ $this->hasil->akademik?->salah ?? '-' }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">2</td>
+                                            <td class="border border-slate-600 px-2">Tes Baca Al-Qur'an</td>
+                                            <td class="border border-slate-600 text-center">
+                                                {{ $alquran?->nilai }}
+                                            </td>
+                                            <td class="border border-slate-600 px-2">
+                                                Jenis : {{ $alquran?->jenis }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">3</td>
+                                            <td class="border border-slate-600 px-2">Tes Hafalan</td>
+                                            <td class="border border-slate-600 text-center">
+                                                {{ $hafalan?->nilai }}
+                                            </td>
+                                            <td class="border border-slate-600 px-2">
+                                                Jenis : {{ $hafalan?->jenis }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">4</td>
+                                            <td class="border border-slate-600 px-2">Tes Wawancara</td>
+                                            <td colspan="2" class="border border-slate-600 px-2">
+                                                {{ $wawancara?->catatan ?: '-' }}
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <span class="pl-10 text-sm text-slate-600">
+                                Dengan ini memutuskan bahwa :
+                            </span>
+                            <div class="pt-5 pl-20 mb-5 text-sm text-slate-600">
+                                <table class="w-full">
+                                    <tbody>
+                                        <tr>
+                                            <td class="w-2/5 pl-5 capitalize">nama</td>
+                                            <td class="font-bold uppercase">: {{ $this->hasil->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="capitalize w-[30%] pl-5">tempat, tanggal lahir</td>
+                                            <td class="font-bold uppercase">:
+                                                {{ $this->hasil->biodata?->tempat_lahir }},
+                                                {{ tanggal($this->hasil->biodata?->tanggal_lahir) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="capitalize w-[30%] pl-5">no. pendaftaran</td>
+                                            <td class="font-bold uppercase">: {{ $this->hasil->kode_daftar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w-2/5 pl-5 capitalize">asal sekolah</td>
+                                            <td class="font-bold uppercase">:
+                                                {{ $this->hasil->biodata?->nama_sekolah_dasar }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center capitalize">dinyatakan :</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-xl font-bold text-center uppercase">
+                                                @if ($this->hasil->diterima == 'diterima')
+                                                    Diterima
+                                                @elseif ($this->hasil->diterima == 'tidak diterima')
+                                                    wajib mengikuti tes ulang / remidi
+                                                @else
+                                                    belum selesai mengikuti tes
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @if ($this->hasil->diterima == 'diterima')
+                                <div class="px-10 pt-5 text-sm text-justify text-slate-600">
+                                    Sebagai Peserta Didik Baru di SMP MIFTAHUL HUDA
+                                    , mohon
+                                    segera melakukan proses pembayaran seragam dan melengkapi persyaratan.
+                                </div>
+                            @endif
+                            <div class="pl-10 mt-5 text-sm text-slate-600">
+                                Demikian pengumuman ini kami sampaikan, atas perhatian dan kerjasamanya kami sampaikan
+                                terimakasih.
+                            </div>
+                            <div class="pl-10 text-sm text-slate-600">
+                                <div class="flex justify-end mt-5 mr-10">
+                                    <div class="flex flex-col items-center space-y-1">
+                                        <span class="text-center">
+                                            Limbangan, {{ tanggal(date('Y-m-d')) }}
+                                            <br>
+                                            Kepala Sekolah
+                                        </span>
+                                        <div class=" py-12"></div>
+                                        {{-- <img src="{{ asset('images/ttdkasek.png') }}" class="h-24" /> --}}
+                                        <span class="font-bold text-center underline">
+                                            Arief Fahmie,S.Pd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
 
                         </details>
 
@@ -170,9 +293,6 @@
                                 Silakan melakukan daftar ulang sesuai jadwal
                                 yang telah ditentukan oleh panitia.
                             </p>
-
-                            <x-button href="{!! route('siswa.print-pengumuman.print', ['kode_daftar' => auth()->user()->kode_daftar]) !!}" target="blank__" label="print hasil" icon="printer"
-                                positive />
 
 
                         </div>
@@ -195,14 +315,11 @@
 
                         <p class="mt-4 text-lg gap-2">
                             Anda belum dinyatakan lulus pada seleksi
-                            Penerimaan Peserta Didik Baru.
+                            Penerimaan Peserta Didik Baru. <br>
+                            <x-button href="{!! route('siswa.print-pengumuman.print', ['kode_daftar' => auth()->user()->kode_daftar]) !!}" target="blank__" label="print hasil"
+                                icon="printer" positive />
                         </p>
 
-
-                        @php
-                            $hafalan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'hafalan');
-                            $bacaan = $this->hasil?->seleksiAgama?->firstWhere('jenis', 'alquran');
-                        @endphp
 
                         <details class="mt-8 group rounded-2xl border border-base-300 bg-base-100 shadow-sm">
 
@@ -220,83 +337,182 @@
 
                             </summary>
 
-                            <div class="border-t border-base-200 p-6">
+                            <div class="border-b-2 border-slate-600 pb-2">
+                                <div class="relative flex items-center justify-center">
+                                    <img src="{{ asset('images/logo56.png') }}" alt="logo"
+                                        class="absolute left-0 w-24 h-24">
 
-                                <div class="grid gap-5 md:grid-cols-3">
-
-                                    <div class="card bg-primary text-primary-content shadow">
-
-                                        <div class="card-body p-5 text-center">
-
-                                            <h3 class="font-semibold text-lg">
-                                                Akademik
-                                            </h3>
-
-                                            <div class="text-6xl font-extrabold leading-none mt-2">
-                                                {{ $this->hasil?->akademik?->nilai ?? '-' }}
-                                            </div>
-
-                                            <div class="text-sm opacity-80">
-                                                Nilai Akhir
-                                            </div>
-
-                                            <div class="divider my-3"></div>
-
-                                            <div class="grid grid-cols-2 gap-3 text-sm">
-
-                                                <div class="rounded-lg bg-white/10 p-2">
-                                                    <div class="opacity-80">Benar</div>
-                                                    <div class="font-bold text-lg">
-                                                        {{ $this->hasil?->akademik?->benar ?? 0 }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="rounded-lg bg-white/10 p-2">
-                                                    <div class="opacity-80">Salah</div>
-                                                    <div class="font-bold text-lg">
-                                                        {{ $this->hasil?->akademik?->salah ?? 0 }}
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
+                                    <div class="text-center">
+                                        <div class="uppercase tracking-wide text-slate-600 font-bold">
+                                            Yayasan Miftahul Huda
                                         </div>
 
-                                    </div>
-                                    <div class="card bg-success text-success-content shadow">
-
-                                        <div class="card-body items-center text-center">
-
-                                            <div class="text-sm opacity-80">
-                                                Hafalan
-                                            </div>
-
-                                            <div class="text-5xl font-extrabold">
-                                                {{ $hafalan?->nilai ?? '-' }}
-                                            </div>
-
+                                        <div class="text-2xl uppercase tracking-[.2em] text-slate-600 font-bold">
+                                            SMP Miftahul Huda
                                         </div>
 
-                                    </div>
-
-                                    <div class="card bg-secondary text-secondary-content shadow">
-
-                                        <div class="card-body items-center text-center">
-
-                                            <div class="text-sm opacity-80">
-                                                Bacaan Al-Qur'an
+                                        <div class="text-slate-600 text-xs mt-1">
+                                            <div>Jl. Masjid No. 2 Peron - Limbangan, Kab. Kendal - Jawa Tengah</div>
+                                            <div>HP. 087880001111, 082280001111, 085780001111 E-mail: smpmifda@gmail.com
                                             </div>
-
-                                            <div class="text-5xl font-extrabold">
-                                                {{ $bacaan?->nilai ?? '-' }}
-                                            </div>
-
+                                            <div>Website : www.smpmiftahulhudaperon.com</div>
                                         </div>
-
                                     </div>
-
                                 </div>
+                            </div>
+                            <h1 class="mb-2 font-bold text-center uppercase text-slate-700 text-md">
+                                pengumuman
+                                <br>
+                                no : psb/smp-mifda/{{ str_replace(' ', '', $this->hasil->biodata?->tahun) }}
+                            </h1>
+                            <h1 class="text-sm text-center uppercase text-slate-600">tentang</h1>
+                            <h1 class="mb-10 text-sm font-bold text-center uppercase text-slate-700">
+                                penerimaan santri baru
+                                <br>
+                                SMP MIFTAHUL HUDA
+                                tahun {{ $this->hasil->biodata?->tahun }}
+                            </h1>
+                            <div class="px-10 text-sm text-slate-600">
+                                Berdasarkan hasil tes seleksi penerimaan peserta didik baru tahun ajaran
+                                {{ $this->hasil->biodata?->tahun }} SMP
+                                Miftahul Huda, yang
+                                meliputi :
+                            </div>
+                            @php
+                                $alquran = $this->hasil->seleksiAgama->firstWhere('jenis', 'alquran');
+                                $hafalan = $this->hasil->seleksiAgama->firstWhere('jenis', 'hafalan');
+                                $wawancara = $this->hasil->wawancara;
 
+                            @endphp
+
+                            <div class="pt-2 pl-10 mb-2 text-sm text-slate-600">
+                                <table class="w-full border border-slate-600">
+                                    <thead>
+                                        <tr class="font-bold text-center bg-slate-100">
+                                            <td class="border border-slate-600 py-1 w-10">No</td>
+                                            <td class="border border-slate-600 py-1">Jenis Tes</td>
+                                            <td class="border border-slate-600 py-1">Hasil</td>
+                                            <td class="border border-slate-600 py-1">Keterangan</td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">1</td>
+                                            <td class="border border-slate-600 px-2">Tes Akademik</td>
+                                            <td class="border border-slate-600 text-center">
+                                                {{ $this->hasil->akademik?->nilai }}
+                                            </td>
+                                            <td class="border border-slate-600 px-2">
+                                                Benar : {{ $this->hasil->akademik?->benar ?? '-' }} <br>
+                                                Salah : {{ $this->hasil->akademik?->salah ?? '-' }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">2</td>
+                                            <td class="border border-slate-600 px-2">Tes Baca Al-Qur'an</td>
+                                            <td class="border border-slate-600 text-center">
+                                                {{ $alquran?->nilai }}
+                                            </td>
+                                            <td class="border border-slate-600 px-2">
+                                                Jenis : {{ $alquran?->jenis }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">3</td>
+                                            <td class="border border-slate-600 px-2">Tes Hafalan</td>
+                                            <td class="border border-slate-600 text-center">
+                                                {{ $hafalan?->nilai }}
+                                            </td>
+                                            <td class="border border-slate-600 px-2">
+                                                Jenis : {{ $hafalan?->jenis }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="border border-slate-600 text-center">4</td>
+                                            <td class="border border-slate-600 px-2">Tes Wawancara</td>
+                                            <td colspan="2" class="border border-slate-600 px-2">
+                                                {{ $wawancara?->catatan ?: '-' }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <span class="pl-10 text-sm text-slate-600">
+                                Dengan ini memutuskan bahwa :
+                            </span>
+                            <div class="pt-5 pl-20 mb-5 text-sm text-slate-600">
+                                <table class="w-full">
+                                    <tbody>
+                                        <tr>
+                                            <td class="w-2/5 pl-5 capitalize">nama</td>
+                                            <td class="font-bold uppercase">: {{ $this->hasil->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="capitalize w-[30%] pl-5">tempat, tanggal lahir</td>
+                                            <td class="font-bold uppercase">:
+                                                {{ $this->hasil->biodata?->tempat_lahir }},
+                                                {{ tanggal($this->hasil->biodata?->tanggal_lahir) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="capitalize w-[30%] pl-5">no. pendaftaran</td>
+                                            <td class="font-bold uppercase">: {{ $this->hasil->kode_daftar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w-2/5 pl-5 capitalize">asal sekolah</td>
+                                            <td class="font-bold uppercase">:
+                                                {{ $this->hasil->biodata?->nama_sekolah_dasar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center capitalize">dinyatakan :</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-xl font-bold text-center uppercase">
+                                                @if ($this->hasil->diterima == 'diterima')
+                                                    Diterima
+                                                @elseif ($this->hasil->diterima == 'tidak diterima')
+                                                    wajib mengikuti tes ulang / remidi
+                                                @else
+                                                    belum selesai mengikuti tes
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @if ($this->hasil->diterima == 'diterima')
+                                <div class="px-10 pt-5 text-sm text-justify text-slate-600">
+                                    Sebagai Peserta Didik Baru di SMP MIFTAHUL HUDA
+                                    , mohon
+                                    segera melakukan proses pembayaran seragam dan melengkapi persyaratan.
+                                </div>
+                            @endif
+                            <div class="pl-10 mt-5 text-sm text-slate-600">
+                                Demikian pengumuman ini kami sampaikan, atas perhatian dan kerjasamanya kami sampaikan
+                                terimakasih.
+                            </div>
+                            <div class="pl-10 text-sm text-slate-600">
+                                <div class="flex justify-end mt-5 mr-10">
+                                    <div class="flex flex-col items-center space-y-1">
+                                        <span class="text-center">
+                                            Limbangan, {{ tanggal(date('Y-m-d')) }}
+                                            <br>
+                                            Kepala Sekolah
+                                        </span>
+                                        <div class=" py-12"></div>
+                                        {{-- <img src="{{ asset('images/ttdkasek.png') }}" class="h-24" /> --}}
+                                        <span class="font-bold text-center underline">
+                                            Arief Fahmie,S.Pd.
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
 
                         </details>
@@ -308,9 +524,6 @@
                                 Tetap semangat dan semoga memperoleh hasil
                                 terbaik pada kesempatan berikutnya.
                             </p>
-
-                            <x-button href="{!! route('siswa.print-pengumuman.print', ['kode_daftar' => auth()->user()->kode_daftar]) !!}" target="blank__" label="print hasil" icon="printer"
-                                positive />
 
                         </div>
 

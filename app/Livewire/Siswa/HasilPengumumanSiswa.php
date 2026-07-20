@@ -30,6 +30,7 @@ class HasilPengumumanSiswa extends Component
             ->whereNis(Auth::getUser()->nis)
             ->with([
                 'akademik',
+                'biodata',
                 'seleksiAgama',
                 'wawancara'
             ])
