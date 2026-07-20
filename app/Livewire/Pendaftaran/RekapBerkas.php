@@ -5,9 +5,12 @@ namespace App\Livewire\Pendaftaran;
 use App\Exports\ExportBerkas;
 use App\Models\Siswa;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
+
+#[Title('Rekap Berkas')]
 
 class RekapBerkas extends Component
 {

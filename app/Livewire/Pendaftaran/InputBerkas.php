@@ -5,9 +5,11 @@ namespace App\Livewire\Pendaftaran;
 use App\Models\Berkas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use WireUi\Traits\WireUiActions;
 
+#[Title('Input Berkas')]
 class InputBerkas extends Component
 {
     use WireUiActions;
