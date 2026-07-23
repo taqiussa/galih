@@ -47,7 +47,8 @@
     </div>
 
     {{-- Navbar --}}
-    <header class="sticky top-0 z-20 flex h-16 items-center bg-white px-4 shadow {{ $showSidebar ? 'lg:ml-64' : '' }}">
+    <header
+        class="sticky top-0 z-20 flex h-16 items-center bg-gradient-to-r from-blue-300 to-blue-700 px-4 shadow {{ $showSidebar ? 'lg:ml-64' : '' }}">
 
         @if ($showSidebar)
             <button class="mr-4 lg:hidden" @click="sidebarOpen = true">

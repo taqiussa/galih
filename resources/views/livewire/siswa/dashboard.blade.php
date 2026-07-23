@@ -16,13 +16,16 @@
 
             <br><br>
 
-            Username Tes Akademik :
+            Username :
             <strong>{{ auth()->user()->kode_daftar }}</strong>
 
             <br>
 
-            Password Tes Akademik :
+            Password :
             <strong>12345678</strong>
+
+            <br>
+            Catat Username dan Password untuk login ke akun anda.
         </p>
 
         <div class="mt-8 flex justify-end">
