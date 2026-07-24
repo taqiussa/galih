@@ -11,7 +11,9 @@ use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 
+#[Title('Tes Akademik')]
 class Exam extends Component
 {
     use WireUiActions;

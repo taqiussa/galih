@@ -5,10 +5,12 @@ namespace App\Livewire\Seragam;
 use App\Exports\ExportSeragam;
 use App\Models\Siswa;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
+#[Title('Hasil Ukur Seragam')]
 class HasilUkurSeragam extends Component
 {
     use WithPagination;
